@@ -1,1 +1,314 @@
 /* You can add global styles to this file, and also import other style files */
+@import "src/assets/base/_helpers.scss";
+@import "src/assets/_mixins.scss";
+
+body,
+html,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fafafa;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+}
+
+ul,
+ol {
+  @extend %listreset;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1 {
+  @include font(21px);
+  color: #000;
+  font-weight: 700;
+  margin: 0 0 15px;
+  &:before {
+    @include inline();
+    content: '';
+    width: 4px;
+    height: 25px;
+    background: #ffab00;
+    margin: -3px 10px 0 0;
+  }
+}
+
+h2 {
+  @include font(20px);
+  text-transform: uppercase;
+  border-bottom: 2px solid #ffab00;
+  text-align: center;
+  font-weight: 700;
+  padding: 20px 0;
+  color: #333;
+}
+
+.object-fit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.alert {
+  text-align: center;
+  max-width: 1140px;
+  margin: 10px auto;
+  width: 100%;
+}
+
+.two-cols {
+  @include size(100%);
+  display: flex;
+  letter-spacing: -10px;
+  .cols {
+    @include inline(top);
+    width: 50%;
+    letter-spacing: 0;
+    &:first-child {
+      width: 48%;
+    }
+    &:last-child {
+      width: 52%;
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+    }
+  }
+}
+
+.list-news {
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.content {
+  padding: 0 0 40px;
+}
+
+.banner-top {
+  position: relative;
+  margin: 0 0 25px;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  .img-holder {
+    @include size(100%, 580px);
+    display: inline-flex;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+  .text-holder {
+    @include absolute(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    strong {
+      font-size: 35px;
+      margin: 0 0 20px;
+      display: block;
+    }
+    p {
+      line-height: 25px;
+    }
+  }
+}
+
+.slick-slider {
+  margin: 0 0 40px;
+  .slide {
+    height: 330px;
+    overflow: hidden;
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+    img {
+      object-fit: cover;
+    }
+    .text-holder {
+      @include absolute(auto,0,0,0);
+      background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+      text-align: center;
+      padding: 20px;
+      color: #fff;
+    }
+  }
+}
+
+.slick-prev,
+.slick-next {
+  &:before {
+    font-size: 30px;
+  }
+}
+
+.slick-next {
+  right: 25px;
+}
+
+.slick-prev {
+  left: 25px;
+}
+
+.col-holder {
+  display: flex;
+  margin: 0 -15px;
+  .col {
+    flex: 1;
+    border-radius: 4px;
+    img {
+      @include size(100%);
+      object-fit: cover;
+    }
+  }
+  .text-overlay {
+    @include absolute(auto, 25px, 25px, 20px);
+    color: #fff;
+    strong {
+      border-left: 2px solid #fff;
+      padding: 0 0 0 10px;
+      display: block;
+    }
+  }
+  .col-detail {
+    line-height: 30px;
+    strong {
+      display: block;
+      margin: 0 0 30px;
+    }
+  }
+}
+
+.search-outer {
+  @include absolute(160px, auto, 15px, auto);
+  li {
+    a {
+      color: #000;
+      font-weight: 700;
+      text-transform: uppercase;
+      > i {
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+}
+
+.search-box {
+  input {
+    border: 1px solid #333;
+    padding: 2px 5px;
+  }
+  i {
+    margin: 0 0 0 10px;
+    cursor: pointer;
+  }
+}
+
+.in-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  min-height: 400px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+
+  .col-holder {
+    display: block;
+    .col {
+      flex: none;
+      &:first-child {
+        margin: 0 0 20px;
+      }
+    }
+  }
+
+  .latest-news {
+    margin: 0 0 20px;
+  }
+
+  .two-cols {
+    display: block;
+    .cols {
+      &:first-child,
+      &:last-child {
+        width: 100%;
+      }
+      &.bg-white {
+        padding: 20px 10px;
+      }
+    }
+  }
+
+  .search-outer {
+    top: 113px;
+    ul {
+      font-size: 13px;
+    }
+  }
+
+  .banner-top .img-holder {
+    height: 280px;
+  }
+}
+
+.right-news {
+  .text-overlay {
+    @include absolute(auto, 25px, 25px, 15px);
+    color: #fff;
+  }
+}
+
+.recent-events {
+  background: #fff;
+  padding: 30px 20px;
+  min-height: 100%;
+  strong {
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    border-bottom: 2px dashed #ddd;
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+  }
+  .list-events {
+    font-size: 18px;
+    font-weight: 700;
+    li {
+      overflow: hidden;
+      margin: 0 0 10px;
+      span {
+        font-style: italic;
+        margin: 0 20px 0 0;
+        font-size: 24px;
+        color: #919bbd;
+        float: left;
+      }
+
+    }
+  }
+}

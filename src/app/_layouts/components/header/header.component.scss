@@ -1,0 +1,116 @@
+@import "src/assets/_mixins.scss";
+
+.header-top {
+  padding: 45px 30px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.header-bottom {
+  overflow: hidden;
+  padding: 25px 0;
+  #nav {
+    float: left;
+  }
+  .right-content {
+    float: right;
+    padding: 0 90px 0 0;
+    ul {
+      text-transform: uppercase;
+      font-weight: 700;
+      li {
+        @include inline();
+        margin: 0 20px;
+        a {
+          color: #000;
+          text-decoration: none;
+          &:hover {
+            color: lighten(#000, 30%);
+          }
+          i {
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 auto;
+  width: 177px;
+  color: #000;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.social-media {
+  float: right;
+  margin: 6px 0 0;
+  ul {
+    li {
+      @include inline();
+      margin: 0 0 0 20px;
+      a {
+        text-decoration: none;
+        color: #000;
+        &:hover {
+          color: lighten(#000, 30%);
+        }
+      }
+    }
+  }
+}
+
+#nav {
+  ul {
+    text-transform: uppercase;
+    font-weight: 700;
+    li {
+      @include inline();
+      margin: 0 20px;
+      a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+          color: lighten(#000, 30%);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header-top {
+    padding: 20px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .header-bottom {
+    padding: 5px 0;
+  }
+
+  #nav ul,
+  .header-bottom .right-content ul {
+    font-size: 13px;
+    li {
+      margin: 0 10px;
+    }
+  }
+
+  .social-media {
+    display: table-footer-group;
+    text-align: center;
+    float: none;
+    ul {
+      li {
+        margin: 0 10px;
+      }
+    }
+  }
+}

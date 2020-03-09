@@ -1,0 +1,103 @@
+@import "src/assets/_mixins.scss";
+
+.footer {
+  .upper {
+    background: #ebebeb;
+    padding: 45px 0;
+  }
+  .copyright {
+    padding: 15px 40px;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+      ul {
+        text-transform: uppercase;
+        li {
+          @include inline();
+          position: relative;
+          margin: 0 20px;
+          &:before {
+            @include absolute(0, auto, -21px, 0);
+            content: '|';
+          }
+          &:last-child {
+            &:before {
+              display: none;
+            }
+          }
+          a {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.block-footer {
+  strong {
+    color: #333;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    display: block;
+  }
+  ul {
+    font-size: 14px;
+    text-transform: capitalize;
+    li {
+      margin: 0 0 10px;
+      a {
+        color: #737373;
+      }
+    }
+  }
+  .list-networks {
+    line-height: 28px;
+    li {
+      @include inline();
+      margin: 0 0 0 20px;
+      &:first-child {
+        margin: 0;
+      }
+      a {
+        @include size(28px);
+        @include border-radius(100%);
+        @include transition(0.25s ease all 0s);
+        text-align: center;
+        display: block;
+        color: #fff;
+        &:hover {
+          font-size: 17px;
+        }
+      }
+      &.facebook a {
+        background-color: #3b5998;
+      }
+      &.twitter a {
+        background-color: #55acee;
+      }
+      &.instagram a {
+        background: linear-gradient(#55acee, #ba348d, #db524a, #ffdd7f);
+      }
+      &.linkedin a {
+        background-color: #0e76a8;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    .copyright {
+      .right {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}

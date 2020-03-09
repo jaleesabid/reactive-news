@@ -1,0 +1,173 @@
+<div class="search-outer">
+  <ul>
+    <li>
+      <a href="javascript:void(0)" (click)="openSearch()" *ngIf="!showSearch">
+        <i class="fas fa-search"></i>
+        <span>search</span>
+      </a>
+      <div class="search-box" *ngIf="showSearch">
+        <input type="search" [(ngModel)]="search" placeholder="Min 3 chars" (keyup)="searchNews()" />
+        <i class="fas fa-times" (click)="openSearch()"></i>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="in-progress" *ngIf="newsInProgress">
+  <i class="fas fa-spinner fa-spin"></i>
+</div>
+
+<div class="banner-top" *ngIf="!newsInProgress">
+  <ng-container *ngIf="newsResult?.articles.length > 0">
+    <div class="img-holder" (click)="newsDetail(newsResult?.articles[0])">
+      <img src="{{newsResult?.articles[0]?.urlToImage}}" alt="" />
+    </div>
+    <div class="text-holder">
+      <div>
+        <strong>{{newsResult?.articles[0]?.author}}</strong>
+        <p>{{newsResult?.articles[0]?.title}}</p>
+      </div>
+    </div>
+  </ng-container>
+  <div class="alert alert-warning" role="alert" *ngIf="newsResult?.articles?.length <= 0">
+    <strong>No Record Found!</strong>
+  </div>
+</div>
+<div class="container" *ngIf="!newsInProgress">
+  <h1>Top News</h1>
+  <ngx-slick-carousel class="carousel" [config]="{autoplay: true}" #slickModal>
+    <div ngxSlickItem *ngFor="let news of sliderNews" class="slide" (click)="newsDetail(news)">
+      <img src="{{news?.urlToImage}}" alt="" width="100%" />
+      <div class="text-holder">
+        {{news?.title}}
+      </div>
+    </div>
+  </ngx-slick-carousel>
+  <div class="alert alert-warning" role="alert" *ngIf="sliderNews?.length <= 0">
+    <strong>No Record Found!</strong>
+  </div>
+  <div class="bottom-content" *ngIf="newsResult?.articles[10]">
+    <div class="col-holder mb-4">
+      <div class="col" (click)="newsDetail(newsResult?.articles[10])">
+        <img src="{{newsResult?.articles[10]?.urlToImage}}" alt="" />
+        <div class="text-overlay">
+          <strong>{{newsResult?.articles[10]?.title}}</strong>
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-detail">
+          <strong>{{newsResult?.articles[10]?.title}}</strong>
+          <p style="margin: 0 0 20px">{{newsResult?.articles[10]?.description}}</p>
+          <strong (click)="newsDetail(newsResult?.articles[10])" style="cursor:pointer">Read More</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-warning" role="alert" *ngIf="!newsResult?.articles[10]">
+    <strong>No Record Found!</strong>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-6 col-lg-4" *ngIf="sliderNews?.length > 0">
+      <div class="bg-white pb-4 pl-4 pr-4 latest-news">
+        <h2>Latest News</h2>
+        <ul class="list-news">
+          <li *ngFor="let news of sliderNews" (click)="newsDetail(news)">{{news?.title}} <br /> {{news?.publishedAt | date: 'MMMM d, y, h:mm:ss a'}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-8">
+      <div class="row right-news" style="height:100%">
+        <div class="col-lg-6" *ngIf="newsResult?.articles[11]">
+          <img src="{{newsResult?.articles[11]?.urlToImage}}" alt="" class="object-fit" (click)="newsDetail(newsResult?.articles[11])" />
+          <div class="text-overlay">
+            <strong>{{newsResult?.articles[11]?.author}}</strong>
+            <p>{{newsResult?.articles[11]?.title}}</p>
+          </div>
+        </div>
+        <div class="col-lg-6" *ngIf="newsResult?.articles[12]">
+          <img src="{{newsResult?.articles[12]?.urlToImage}}" alt="" class="object-fit" (click)="newsDetail(newsResult?.articles[12])" />
+          <div class="text-overlay">
+            <strong>{{newsResult?.articles[12]?.author}}</strong>
+            <p>{{newsResult?.articles[12]?.title}}</p>
+          </div>
+        </div>
+        <div class="col-md-12 mt-4" *ngIf="newsResult?.articles[13]">
+          <div class="two-cols">
+            <div class="cols" (click)="newsDetail(newsResult?.articles[13])">
+              <img src="{{newsResult?.articles[13]?.urlToImage}}" alt="" class="object-fit" />
+            </div>
+            <div class="cols pl-3 bg-white" (click)="newsDetail(newsResult?.articles[13])">
+              <div>
+                <h3>{{newsResult?.articles[13]?.author}}</h3>
+                <p>{{newsResult?.articles[13]?.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-lg-8">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <div class="two-cols" *ngIf="newsResult?.articles[14]">
+            <div class="cols" (click)="newsDetail(newsResult?.articles[14])">
+              <img src="{{newsResult?.articles[14]?.urlToImage}}" alt="" class="object-fit" />
+            </div>
+            <div class="cols pl-3 bg-white" (click)="newsDetail(newsResult?.articles[14])">
+              <div>
+                <h3>{{newsResult?.articles[14]?.author}}</h3>
+                <p>{{newsResult?.articles[14]?.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" *ngIf="newsResult?.articles[15]">
+          <div class="card">
+            <div class="card-img-top">
+              <img src="{{newsResult?.articles[15]?.urlToImage}}" alt="" class="card-img" />
+            </div>
+            <div class="card-body">
+              <p>{{newsResult?.articles[15]?.title}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" *ngIf="newsResult?.articles[15]">
+          <div class="card">
+            <div class="card-img-top">
+              <img src="{{newsResult?.articles[16]?.urlToImage}}" alt="" class="card-img" />
+            </div>
+            <div class="card-body">
+              <p>{{newsResult?.articles[16]?.title}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="recent-events">
+        <strong>Recent Event</strong>
+        <ul class="list-events">
+          <li>
+            <span>01.</span>
+            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+          </li>
+          <li>
+            <span>02.</span>
+            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+          </li>
+          <li>
+            <span>03.</span>
+            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+          </li>
+          <li>
+            <span>04.</span>
+            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
