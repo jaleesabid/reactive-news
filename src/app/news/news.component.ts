@@ -34,7 +34,6 @@ export class NewsComponent implements OnInit {
     this.newsInProgress = true;
     this.userService.topHeadlines(q).subscribe(res => {
       this.newsInProgress = false;
-      console.log('Latest News Main: ', res);
       if (res.status == 'ok') {
         this.newsResult = res;
         this.sliderNews.length = 0;
